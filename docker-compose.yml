@@ -1,0 +1,41 @@
+version: "3.5"
+
+services:
+  chronicles-app:
+    build:
+      context: '.'
+      args:
+        uid: ${UID}
+    container_name: chronicles-app
+    environment:
+      - APACHE_RUN_USER=#${UID}
+      - APACHE_RUN_GROUP=#${UID}
+    volumes:
+      - .:/var/www/html
+    ports:
+      - ${HOST_PORT}:80
+    networks:
+      backend:
+        aliases:
+          - chronicles-app
+
+  chronicles-db:
+    image: mariadb:10.4
+    container_name: chronicles-db
+    restart: always
+    ports:
+      - 3306:3306
+    volumes:
+      - ./.chronicles-data/database:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${DB_DATABASE}
+      - MYSQL_USER=${DB_USERNAME}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
+    networks:
+      backend:
+        aliases:
+          - chronicles-db
+
+networks:
+  backend:
