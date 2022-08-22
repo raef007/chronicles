@@ -9,7 +9,7 @@
           </a>
             
           <!-- Sidebar Toggle Btn-->
-          <button class="sidebar-toggle"><i class="fas fa-long-arrow-left"></i></button>
+          <button class="sidebar-toggle"><i class="fas fa-long-arrow-alt-left"></i></button>
         </div>
         <div class="right-menu list-inline no-margin-bottom">
           <!-- Log out               -->

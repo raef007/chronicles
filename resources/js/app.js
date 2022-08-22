@@ -5,7 +5,7 @@
  */
 
 require('./bootstrap');
-require('@fortawesome/fontawesome-free/js/all.js');
+import '@fortawesome/fontawesome-free/js/all.js'
 
 window.Vue = require('vue');
 
@@ -20,14 +20,29 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('trades-datatable', require('./components/TradesDataTable.vue').default);
+Vue.component('capital-summary', require('./components/CapitalSummary.vue').default);
+Vue.component('trade-entry-form', require('./components/TradeEntryForm.vue').default);
+/**
+ * Vuetify Resources
+ *
+ */
+import Vuetify from 'vuetify';
+Vue.use(Vuetify);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-
 const app = new Vue({
     el: '#app',
+    vuetify: new Vuetify({
+        theme: { dark: true },
+    }),
 });
+
+
+
+
+   
